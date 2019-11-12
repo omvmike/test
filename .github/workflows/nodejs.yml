@@ -30,12 +30,9 @@ jobs:
         BT_MERCHANT_ID: ${{secrets.BT_MERCHANT_ID}}
         BT_PUBLIC_KEY: ${{secrets.BT_PUBLIC_KEY}}
         BT_PRIVATE_KEY: ${{secrets.BT_PRIVATE_KEY}} 
-    - uses: fifsky/ssh-action@master
-      with:
-        command: |
-          whoami
-          ls -a
-        host: ${{ secrets.SSH_HOST }}
-        user: ununtu
-        key: ${{ secrets.ID_RSA}}
-    
+    - uses: appleboy/ssh-action@master
+      env:
+        USERNAME: ubuntu
+        HOST: ${{ secrets.SSH_HOST }}
+        SCRIPT: whoami && ls -l
+        KEY: ${{ secrets.ID_RSA}}
