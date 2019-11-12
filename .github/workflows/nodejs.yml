@@ -1,6 +1,7 @@
 name: Node test CI
 
 on:
+  deployment:
   push:
     branches:
       - master
