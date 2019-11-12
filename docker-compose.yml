@@ -9,3 +9,4 @@ services:
       - .:/braintree_express_example
     environment:
       - PORT=4567
+    #tty: true
