@@ -1,6 +1,9 @@
 name: Node CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   build:
@@ -17,9 +20,13 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install, build, and test
+    - name: npm install, build, and test with env $BT_ENVIRONMENT
       run: |
         npm install
         npm test
       env:
         CI: true
+        BT_ENVIRONMENT: Sandbox
+        BT_MERCHANT_ID: ${{secrets.BT_MERCHANT_ID}}
+        BT_PUBLIC_KEY: ${{secrets.BT_PUBLIC_KEY}}
+        BT_PRIVATE_KEY: ${{secrets.BT_PRIVATE_KEY}} 
